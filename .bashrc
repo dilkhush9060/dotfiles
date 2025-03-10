@@ -184,7 +184,7 @@ alias pip='pip3'
 
 #nvim
 alias vim="nvim"
-export PATH="$PATH:/opt/nvim/"
+export PATH="$PATH:/opt/nvim/bin"
 
 
 # bun

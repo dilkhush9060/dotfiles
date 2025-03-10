@@ -6,7 +6,7 @@ set -e
 # Colors for output
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
 echo -e "${BLUE}Starting Ubuntu Professional Setup...${NC}"
 
@@ -61,8 +61,6 @@ nala install -y \
     openjdk-17-jdk\
     ripgrep\
     coreutils\
-
-
 
 
 # Configure Git
@@ -124,17 +122,34 @@ else
     exit 1
 fi
 
-#setup nvim
-# curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-# rm -rf /opt/nvim
-# tar -C /opt -xzf nvim-linux-x86_64.tar.gz
-# rm -rf nvim-linux-x86_64.tar.gz
+#setup rustup
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+# Set Lua 
+wget https://luarocks.org/releases/luarocks-3.11.1.tar.gz
+tar zxpf luarocks-3.11.1.tar.gz
+cd luarocks-3.11.1
+./configure && make && sudo make install
+luarocks --version
+lua -v
+cd ../
+rm -rf luarocks-3.11.1.tar.gz
+rm -rf luarocks-3.11.1
+
+#setup nvim
+NVIM_TAR="nvim-linux-x86_64.tar.gz"
+NVIM_DIR="nvim-linux-x86_64"
+INSTALL_DIR="/opt/nvim"
+curl -LO "https://github.com/neovim/neovim/releases/latest/download/$NVIM_TAR"
+sudo rm -rf "$INSTALL_DIR"
+tar -xzf "$NVIM_TAR"
+sudo mv "$NVIM_DIR" "$INSTALL_DIR"
+rm -f "$NVIM_TAR"
+"$INSTALL_DIR/bin/nvim" --version
 
 #stow start
 cd "$HOME" && cd dotfiles && stow .
 
-
-
+# finish
 echo -e "${BLUE}Setup complete! Please restart your terminal or reboot the system.${NC}"
 echo -e "${GREEN}Installed components:${NC}"
