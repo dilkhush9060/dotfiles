@@ -81,6 +81,13 @@ ufw deny 22/tcp
 #starship
 curl -sS https://starship.rs/install.sh | sh
 
+#nvm and node
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+nvm install --lts
+npm i -g npm@latest
+npm i -g pnpm
+pnpm setup
+
 # Fetch the latest version from GitHub
 LATEST_VERSION=$(curl -s https://api.github.com/repos/ogham/exa/releases/latest | grep '"tag_name":' | sed -E 's/.*"tag_name": "([^"]+)".*/\1/')
 if [ -z "$LATEST_VERSION" ]; then
@@ -129,6 +136,9 @@ tar -xzf "$NVIM_TAR"
 sudo mv "$NVIM_DIR" "$INSTALL_DIR"
 rm -f "$NVIM_TAR"
 "$INSTALL_DIR/bin/nvim" --version
+
+#tpm setup
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 #stow start
 stow .
