@@ -125,7 +125,7 @@ export PATH=$PATH:$GOPATH/bin
 . "$HOME/.cargo/env"  
 
 #java
-JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
+export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
 
 #andriod studio
 export ANDROID_HOME=$HOME/Android/Sdk
@@ -182,7 +182,9 @@ alias fd='fdfind'
 alias python='python3'
 alias pip='pip3'
 
-
+#nvim
+alias vim="nvim"
+export PATH="$PATH:/opt/nvim/"
 
 
 # bun
