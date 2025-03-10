@@ -132,6 +132,9 @@ fi
 # rm -rf nvim-linux-x86_64.tar.gz
 
 
+#stow start
+cd ~/dotfile
+stow .
 
 
 echo -e "${BLUE}Setup complete! Please restart your terminal or reboot the system.${NC}"
