@@ -81,39 +81,22 @@ ufw deny 22/tcp
 #starship
 curl -sS https://starship.rs/install.sh | sh
 
-
 # Fetch the latest version from GitHub
 LATEST_VERSION=$(curl -s https://api.github.com/repos/ogham/exa/releases/latest | grep '"tag_name":' | sed -E 's/.*"tag_name": "([^"]+)".*/\1/')
-
 if [ -z "$LATEST_VERSION" ]; then
     echo "Failed to fetch the latest version. Please check your internet connection or the GitHub API."
     exit 1
 fi
-
 echo "Installing exa version: $LATEST_VERSION"
-
-# Download the latest binary for Linux x86_64
 curl -LO "https://github.com/ogham/exa/releases/download/${LATEST_VERSION}/exa-linux-x86_64-${LATEST_VERSION}.zip"
-
-# Check if unzip is installed
 if ! command -v unzip &> /dev/null; then
     echo "unzip is required. Installing it now..."
     sudo apt update && sudo apt install -y unzip
 fi
-
-# Extract the zip
 unzip "exa-linux-x86_64-${LATEST_VERSION}.zip"
-
-# Move to /usr/local/bin
 sudo mv bin/exa /usr/local/bin/exa
-
-# Set executable permissions
 sudo chmod +x /usr/local/bin/exa
-
-# Clean up
 rm -rf bin "exa-linux-x86_64-${LATEST_VERSION}.zip"
-
-# Verify
 if command -v exa &> /dev/null; then
     exa --version
     echo "exa installed successfully!"
@@ -148,7 +131,7 @@ rm -f "$NVIM_TAR"
 "$INSTALL_DIR/bin/nvim" --version
 
 #stow start
-cd "$HOME" && cd dotfiles && stow .
+stow .
 
 # finish
 echo -e "${BLUE}Setup complete! Please restart your terminal or reboot the system.${NC}"
