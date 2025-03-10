@@ -26,7 +26,6 @@ nala install -y \
     curl\
     build-essential\
     wget\
-    vim\
     nano\
     btop\
     unzip\
@@ -47,9 +46,9 @@ nala install -y \
     unrar\
     linux-headers-$(uname -r)\
     linux-headers-generic\
-    ntfs-3g\
     p7zip\
     make\
+    ntfs-3g\
     bzip2\
     tar\
     vlc\
