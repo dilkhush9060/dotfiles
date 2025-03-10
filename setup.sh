@@ -83,7 +83,6 @@ ufw deny 22/tcp
 #starship
 curl -sS https://starship.rs/install.sh | sh
 
-#!/bin/bash
 
 # Fetch the latest version from GitHub
 LATEST_VERSION=$(curl -s https://api.github.com/repos/ogham/exa/releases/latest | grep '"tag_name":' | sed -E 's/.*"tag_name": "([^"]+)".*/\1/')
@@ -133,8 +132,8 @@ fi
 
 
 #stow start
-cd ~/dotfile
-stow .
+cd "$HOME" && cd dotfiles && stow .
+
 
 
 echo -e "${BLUE}Setup complete! Please restart your terminal or reboot the system.${NC}"
