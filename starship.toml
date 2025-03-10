@@ -1,0 +1,43 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Blank line between prompts
+add_newline = true
+
+# Show username@hostname like rohit@codebit
+[username]
+show_always = true
+style_user = 'bold blue'
+format = '[$user](bold blue)'
+
+[hostname]
+ssh_only = false
+style = 'bold yellow'
+format = '@[$hostname](bold yellow) '
+
+# Directory style with emoji 🌐
+[directory]
+style = 'bold cyan'
+format = '📁 [$path](bold cyan) '
+truncation_length = 3
+truncation_symbol = '…'
+
+# Git branch module
+[git_branch]
+symbol = '🌿 '
+style = 'bold purple'
+format = '[\($symbol$branch\)]($style) '
+
+# Time module ⏰
+[time]
+disabled = false
+format = '[⏰ $time](bold green) '
+time_format = "%H:%M:%S"
+
+# Character ➜ Green/Red
+[character]
+success_symbol = '[➜](bold green)'
+error_symbol = '[🚨](bold red)'
+
+# Package disabled
+[package]
+disabled = true
